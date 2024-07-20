@@ -103,18 +103,18 @@ def show_message():
     root.title("MetaMask Configuration")
 
     instructions = (
-        "Please configure MetaMask manually:\n\n"
-        "1. Once installed, click on the MetaMask extension and sign in or set up a new account.\n\n"
-        "2. Once you are on your MetaMask dashboard and have completed the setup, click OK to continue.\n\n"
-        "3. In the MetaMask extension, go to 'Settings' > 'Networks' > 'Add Network'.\n\n"
+        "Please configure MetaMask manually: dont click ok or cancel until you have performed the following steps: simply minimize this popup\n\n"
+        "1.Click on the Add extension button that shows in the alert pop up; Once installed, click on the MetaMask extension and sign in or set up a new account.\n\n"
+        "2. After setting up an account, You will be redirected to your MetaMask extension dashboard.\n\n"
+        "3. In the MetaMask extension dashboard, at the top left of the screen click on 'Ethereum Mainnet', > click on 'Add Network', > Scroll down and click on Add network Manually.  .\n\n"
         "4. Enter the following details:\n"
         "   - Network Name: Arbitrum One\n"
         "   - New RPC URL: https://arbitrum.llamarpc.com\n"
         "   - Chain ID: 42161\n"
         "   - Currency Symbol: ETH\n"
         "   - Block Explorer URL: https://arbiscan.io\n\n"
-        "5. After configuring the network, import the provided account using the private key: 0x56ec2116b33eefed4e499d02f8f6f2bdb76b67d53406923e9aa9378dd1aa2fdc.\n\n"
-        "6. Finally, switch to the Arbitrum network and click OK to continue."
+        "5. After configuring the network, click on your account, > click on 'Add Account or Hardware Wallet' import the provided account using the private key: 0x56ec2116b33eefed4e499d02f8f6f2bdb76b67d53406923e9aa9378dd1aa2fdc.\n\n"
+        "6. Finally, switch back to the Brahma Console tab and click OK to continue."
     )
 
     text_widget = tk.Text(root, wrap=tk.WORD)
