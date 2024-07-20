@@ -139,7 +139,7 @@ def confirm_action():
     instructions = (
         "Please configure MetaMask manually:\n\n"
         "1. Please select account 2 and click on Next \n\n"
-        "2. Please click on .\n\n"
+        "2. Please click on Confirm.\n\n"
         "3. You will be redirected to a different page, once you are there, please click on 'Ok' to continue \n\n"
 
     )
