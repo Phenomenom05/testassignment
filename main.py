@@ -175,12 +175,15 @@ def confirm_action():
     root.title("MetaMask Configuration")
 
     instructions = (
-        "Please configure MetaMask manually:\n\n"
-        "1. Please select account 2 and click on Next \n\n"
-        "2. Please click on Confirm.\n\n"
-        "3. You will be redirected to a different page, once you are there, and you can see the title "Secured with signature", please click on 'Ok' to continue \n\n"
+    """Please configure MetaMask manually:
 
-    )
+    1. Please select account 2 and click on Next.
+
+    2. Please click on Confirm.
+
+    3. You will be redirected to a different page, once you are there, and you can see the title "Secured with signature", please click on 'Ok' to continue.
+    """
+)
 
     label = tk.Label(root, text=instructions, justify=tk.LEFT)
     label.pack(padx=20, pady=20)
