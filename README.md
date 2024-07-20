@@ -90,9 +90,13 @@ During execution, you will need to manually perform the following actions:
 3. **Running the Script:**
    - Run the script from the command line in the directory where the script is located.
 
-4. **Troubleshooting:**
+4. **Tkinter GUI Visibility:**
+   - If the Tkinter GUI does not immediately appear, check the taskbar for its icon. Click on it to bring it to the foreground and follow the instructions.
+
+5. **Troubleshooting:**
    - Ensure compatibility between ChromeDriver and the Chrome browser.
    - Adjust paths and settings as needed based on individual system configurations.
+ 
 
 By following these instructions, users should be able to set up and run the automation script successfully.
 
