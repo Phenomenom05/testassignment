@@ -22,25 +22,25 @@ driver = webdriver.Chrome(service=service)
 driver.get("https://console.brahma.fi")
 
 # Click on collect wallet
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/button"))
 ).click()
 
 # Click on the Metamask wallet
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[3]/button/div/div"))
 ).click()
 
 #Click on get
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div[2]/button/div"))
 ).click()
 
 # Click on Add to chrome
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div/div[1]/div[3]/div[2]/div[3]/a/div"))
 ).click()
@@ -49,7 +49,7 @@ WebDriverWait(driver, 30).until(
 # Click on Add to chrome in the Chrome extention shop website
 handles = driver.window_handles
 driver.switch_to.window(handles[1])
-WebDriverWait(driver, 9000).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, '//*[@id="yDmH0d"]/c-wiz/div/div/main/div/section[1]/section/div[2]/div/button'))
 ).click()
@@ -104,21 +104,21 @@ time.sleep(5)
 driver.switch_to.window(handles[0])
 
 # Refresh the site
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div[2]/button"))
 ).click()
 
 #Click on collect wallet
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/button"))
 ).click()
 
 # Click on Your recent wallet
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div/button/div/div"))
 ).click()
 
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div/button/div/div"))
 ).click()
 
