@@ -29,6 +29,18 @@ cd your-repo-name
 ## Install Dependencies
 Ensure you have Python installed. Then install the required Python packages using pip:
 pip install selenium
+pip install tk
+
+Script imports:
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.chrome.service import Service
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    import time
+    import tkinter as tk
+    ....
+
 
 Download and place the chromedriver.exe file in the same directory as this script or specify its path in the chrome_driver_path variable.
 
