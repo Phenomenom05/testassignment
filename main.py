@@ -7,7 +7,7 @@ import time
 import tkinter as tk
 
 
-# Correct path to the ChromeDriver executable
+# Correct path to the ChromeDriver executable. Important: Replace With Your Own Path.
 chrome_driver_path = 'C:/Users/pheda/Development/chromedriver.exe'
 
 # Initialize WebDriver with Service
@@ -21,32 +21,33 @@ driver = webdriver.Chrome(service=service)
 # Load Brahma Console
 driver.get("https://console.brahma.fi")
 
-# Click on collect wallet
+# Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; click on collect wallet button,
 WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/button"))
 ).click()
 
-# Click on the Metamask wallet
+#Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on the Metamask wallet
 WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[3]/button/div/div"))
 ).click()
 
-#Click on get
+# Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on get metamask wallet
 WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div[2]/button/div"))
 ).click()
 
-# Click on Add to chrome
+#Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on Add to chrome
 WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div/div[1]/div[3]/div[2]/div[3]/a/div"))
 ).click()
 
-
+# wait for 15 seconds before continuing script.
 time.sleep(15)
+# Pop up telling the user to click on the accept the add extension option in the alert window
 def show_add_extension_prompt():
     def on_ok():
         root.destroy()
@@ -131,7 +132,7 @@ def show_message():
     root.mainloop()
 
 
-#Triggers the show_message function
+#Trigger the show_message function
 show_message()
 
 # Delay for 3 seconds
@@ -141,17 +142,17 @@ time.sleep(5)
 # Return to the main/first window
 driver.switch_to.window(handles[0])
 
-# Refresh the site
+#Wait for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Refreshe the site
 WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div[2]/button"))
 ).click()
 
-#Click on collect wallet
+#Wait for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on collect wallet
 WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/button"))
 ).click()
 
-# Click on Your recent wallet
+#Wait for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on Your recent wallet
 WebDriverWait(driver, 90).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div/button/div/div"))
 ).click()
@@ -258,7 +259,7 @@ except Exception as e:
     driver.quit()
     exit()
 
-# Step 4: Select UI-testing console
+# Select UI-testing console
 try:
     time.sleep(10)
     ui_testing_console_button = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]")
@@ -274,7 +275,7 @@ except Exception as e:
     driver.quit()
     exit()
 
-# Step 5: Take Screenshot
+# Take Screenshot
 try:
     time.sleep(20)
     driver.save_screenshot("dashboard.png")
