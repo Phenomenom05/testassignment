@@ -81,9 +81,11 @@ def show_message():
         "6. Finally, switch to the Arbitrum network and click OK to continue."
     )
 
-    label = tk.Label(root, text=instructions, justify=tk.LEFT)
-    label.pack(padx=20, pady=20)
-
+    text_widget = tk.Text(root, wrap=tk.WORD)
+    text_widget.insert(tk.END, instructions)
+    text_widget.config(state=tk.DISABLED)
+    text_widget.pack(padx=20, pady=20)
+    
     ok_button = tk.Button(root, text="OK", command=on_ok)
     ok_button.pack(side=tk.LEFT, padx=20, pady=20)
 
