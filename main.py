@@ -228,11 +228,14 @@ try:
         root.title("MetaMask Configuration")
 
         instructions = (
-            "Please configure Your Signature manually:\n\n"
-            "1. Confirm Your signature \n\n"
-            "2. You will be redirected to page, once you are there, and you can seee two consoles "Manual and UI testing", please click on ok to continue. \n\n"
+    """Please configure Your Signature manually:
 
-        )
+    1. Confirm Your signature.
+
+    2. You will be redirected to a page. Once you are there, and you can see two consoles "Manual and UI testing", please click on OK to continue.
+    """
+)
+
 
         label = tk.Label(root, text=instructions, justify=tk.LEFT)
         label.pack(padx=20, pady=20)
