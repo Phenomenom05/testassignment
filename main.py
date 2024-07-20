@@ -46,6 +46,42 @@ WebDriverWait(driver, 90).until(
 ).click()
 
 
+time.sleep(15)
+def show_add_extension_prompt():
+    def on_ok():
+        root.destroy()
+
+    def on_cancel():
+        root.destroy()
+        driver.quit()
+        exit()
+
+    root = tk.Tk()
+    root.title("Add Extension Confirmation")
+
+    instructions = (
+        "Please be prepared to cofirm that you want to add the extension:\n\n"
+        
+        "When the alert window pops up, confirm the action.\n\n"
+        "Click OK to continue."
+    )
+
+    label = tk.Label(root, text=instructions, justify=tk.LEFT)
+    label.pack(padx=20, pady=20)
+
+    ok_button = tk.Button(root, text="OK", command=on_ok)
+    ok_button.pack(side=tk.LEFT, padx=20, pady=20)
+
+    cancel_button = tk.Button(root, text="Cancel", command=on_cancel)
+    cancel_button.pack(side=tk.RIGHT, padx=20, pady=20)
+
+    root.mainloop()
+
+# Trigger the add extension prompt
+show_add_extension_prompt()
+
+
+
 # Click on Add to chrome in the Chrome extention shop website
 handles = driver.window_handles
 driver.switch_to.window(handles[1])
