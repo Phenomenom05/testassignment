@@ -54,6 +54,7 @@ Manual Steps
 During execution, you will need to manually perform the following actions:
 
 1. MetaMask Configuration:
+Click on the add extension option when the alert pops up; It will install meta mask
 
     Configure MetaMask with the provided details.
     Add the Arbitrum network and import the provided account.
