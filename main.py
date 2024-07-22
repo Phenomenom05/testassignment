@@ -15,14 +15,19 @@ chrome_driver_path = 'C:/Users/pheda/Development/chromedriver.exe'
 EXTENSION_PATH = 'C:/Users/pheda/automationtesting/nkbihfbeogaeaoehlefnkodbefgpgknn-11.16.14-Crx4Chrome.com.crx'
 #YOUR METAMASK PASSWORD: USE YOURS
 password = "Delight2012!"
-
+#YOUR CHROME PROFILE: USE YOURS
+CHROME_PATH = "C:/Users/pheda/AppData/Local/Google/Chrome/User Data"
+# THE PROFILE THE EXTENSION WAS INSTALLED IN.:
+EXACT_CHROME_PROFILE ="Profile 4"
 
 
 # Initialize Chrome options
 chrome_options = Options()
 chrome_options.add_extension(EXTENSION_PATH)  # Load MetaMask extension
-chrome_options.add_argument("user-data-dir=C:/Users/pheda/AppData/Local/Google/Chrome/User Data")
-chrome_options.add_argument("profile-directory=Profile 4")
+#Your chrome profile
+chrome_options.add_argument(f"user-data-dir={CHROME_PATH}")
+# The profile containing the extension
+chrome_options.add_argument(f"profile-directory={EXACT_CHROME_PROFILE}")
 
 
 network_name = "Arbitrum One"
