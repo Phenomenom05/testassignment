@@ -156,8 +156,24 @@ time.sleep(8)
 driver.get("https://console.brahma.fi/")
 
 
+
 try:
     time.sleep(10)
+
+    WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div[1]/div[2]/div/button"))
+    ).click()
+
+    driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html")
+
+    WebDriverWait(driver, 20).until(
+        EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div[3]/div/div[5]/footer/button[2]"))
+    ).click()
+    
+    time.sleep(5)
+    driver.get("https://console.brahma.fi/")
+    time.sleep(10)
+
     ui_testing_console_button = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]")
     WebDriverWait(driver, 30).until(
         EC.element_to_be_clickable(ui_testing_console_button)
