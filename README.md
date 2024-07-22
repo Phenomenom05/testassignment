@@ -63,8 +63,25 @@ Before running the script, ensure you have the following:
    - **MetaMask Account Details:**
      - **Do not use the MetaMask password provided in any example or public documentation. Ensure you use your own MetaMask account credentials and password.
 
-2. **Update MetaMask Extension ID:**
-   - Replace the variable extension ID in the script with the actual MetaMask extension ID retrieved from `chrome://extensions/`.
+
+2. **Chrome Profile Configuration:**
+   - Ensure to replace CHROME_PATH and EXACT_CHROME_PROFILE with the path conatianing your CHROME PROFILE
+   ## Obtaining Chrome Profile Path
+
+- **For Windows:**
+  - Click on your profile icon located at the top right of the screen.
+  - Open the Run dialog by pressing `WIN + R`, then type `chrome://version/` and press Enter.
+  - Look for the "Profile Path" field to find your profile directory.
+
+- **For Mac:**
+  - Click on your profile icon located at the top right of the screen.
+  - Open Terminal and type `open -a "Google Chrome" --args --profile-directory=Profile 1` (adjust "Profile 1" as needed).
+  - Alternatively, navigate to `chrome://version/` in your Chrome browser and look for the "Profile Path" field to find your profile directory.
+  - Use the shortcut `Command + Shift + U` to open the Utilities folder, then launch Terminal from there to access the Chrome profile path.
+
+3. **Update MetaMask Extension ID:**
+   - Replace the placeholder extension ID in the script with the actual MetaMask extension ID retrieved from `chrome://extensions/`.
+
 
 ## Steps to Run the Script
 
