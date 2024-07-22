@@ -67,17 +67,30 @@ Before running the script, ensure you have the following:
 2. **Chrome Profile Configuration:**
    - Ensure to replace CHROME_PATH and EXACT_CHROME_PROFILE with the path conatianing your CHROME PROFILE
    ## Obtaining Chrome Profile Path
-
-- **For Windows:**
-  - Click on your profile icon located at the top right of the screen.
-  - Open the Run dialog by pressing `WIN + R`, then type `chrome://version/` and press Enter.
-  - Look for the "Profile Path" field to find your profile directory.
-
-- **For Mac:**
-  - Click on your profile icon located at the top right of the screen.
-  - Open Terminal and type `open -a "Google Chrome" --args --profile-directory=Profile 1` (adjust "Profile 1" as needed).
-  - Alternatively, navigate to `chrome://version/` in your Chrome browser and look for the "Profile Path" field to find your profile directory.
-  - Use the shortcut `Command + Shift + U` to open the Utilities folder, then launch Terminal from there to access the Chrome profile path.
+1. Windows
+   Open File Explorer:
+   
+   Press Win + E to open File Explorer.
+   Navigate to the Chrome User Data Directory:
+   
+   Go to C:\Users\<YourUsername>\AppData\Local\Google\Chrome\User Data\.
+   Replace <YourUsername> with your actual Windows username.
+   Locate Your Profile Folder:
+   
+   The default profile is named Default.
+   Additional profiles are named Profile 1, Profile 2, etc.
+2.macOS
+   Open Finder:
+   
+   Click on the Finder icon in the dock.
+   Go to the Library Folder:
+   
+   Press Cmd + Shift + G to open the "Go to Folder" dialog.
+   Type ~/Library/Application Support/Google/Chrome/ and press Enter.
+   Locate Your Profile Folder:
+   
+   The default profile is named Default.
+   Additional profiles are named Profile 1, Profile 2, etc.
 
 3. **Update MetaMask Extension ID:**
    - Replace the placeholder extension ID in the script with the actual MetaMask extension ID retrieved from `chrome://extensions/`.
