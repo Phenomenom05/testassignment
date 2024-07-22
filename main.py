@@ -1,265 +1,156 @@
+import time
+# chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#unlock
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 import tkinter as tk
 
-
-# Correct path to the ChromeDriver executable. Important: Replace With Your Own Path.
+# Path to the ChromeDriver executable: USE YOURS
 chrome_driver_path = 'C:/Users/pheda/Development/chromedriver.exe'
+
+# Path to the MetaMask extension: USE YOURS
+EXTENSION_PATH = 'C:/Users/pheda/automationtesting/nkbihfbeogaeaoehlefnkodbefgpgknn-11.16.14-Crx4Chrome.com.crx'
+#YOUR METAMASK PASSWORD: USE YOURS
+password = "Delight2012!"
+
+
+
+# Initialize Chrome options
+chrome_options = Options()
+chrome_options.add_extension(EXTENSION_PATH)  # Load MetaMask extension
+chrome_options.add_argument("user-data-dir=C:/Users/pheda/AppData/Local/Google/Chrome/User Data")
+chrome_options.add_argument("profile-directory=Profile 4")
+
+
+network_name = "Arbitrum One"
+RPC_URL= "https://arbitrum.llamarpc.com"
+CHAIN_ID= "42161"
+CURRENCY_SYMBOL="ETH"
+BLOCK_EXPLORER_URL="https://arbiscan.io"
+
 
 # Initialize WebDriver with Service
 service = Service(executable_path=chrome_driver_path)
-# chrome_options.add_argument("--load-extension=" + metamask_extension_path)
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
+# Load the extension website : REPLACE THE ID "nkbihfbeogaeaoehlefnkodbefgpgknn" with your own extension id
+EXTENSION_ID = "nkbihfbeogaeaoehlefnkodbefgpgknn"
+driver.get(f"chrome-extension://{EXTENSION_ID}/home.html")
 
 
-driver = webdriver.Chrome(service=service)
+
+time.sleep(10)
+password_field = WebDriverWait(driver, 30).until(
+    EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div/div/form/div/div/input'))
+)
+password_field.send_keys(password)
+time.sleep(5)
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/div/div/button").click()
+time.sleep(5)
 
 
-# Load Brahma Console
-driver.get("https://console.brahma.fi")
 
-# Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; click on collect wallet button,
-WebDriverWait(driver, 90).until(
+
+
+# Perform actions in the third tab
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/button"))
+).click()
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[3]/div[3]/div/section/div[3]/button"))
+).click()
+
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[3]/div[3]/div/section/div[2]/div[2]/button"))
+).click()
+
+
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[3]/div[3]/div/section/div[2]/div/div[1]/div/input"))
+).click()
+
+time.sleep(5)
+driver.find_element(By.XPATH, "/html/body/div[3]/div[3]/div/section/div[2]/div/div[1]/div/input").send_keys("0x56ec2116b33eefed4e499d02f8f6f2bdb76b67d53406923e9aa9378dd1aa2fdc")
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[3]/div[3]/div/section/div[2]/div/div[2]/button[2]"))
+).click()
+
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div/div[2]/div/div[1]/button"))
+).click()
+
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[3]/div[3]/div/section/div[5]/button"))
+).click()
+
+    # Scroll to bottom
+time.sleep(5)
+element_network = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[3]/a/h6")
+driver.execute_script("arguments[0].scrollIntoView(true);", element_network)
+time.sleep(5)
+
+WebDriverWait(driver, 30).until(
+EC.element_to_be_clickable(
+        (By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[3]/a"))
+).click()
+
+time.sleep(3)
+save_button = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[3]/button[2]")
+
+    # Scroll to bottom
+driver.execute_script("arguments[0].scrollIntoView(true);", save_button)
+time.sleep(5)
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[1]/label/input").send_keys(network_name)
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[2]/label/input").send_keys(RPC_URL)
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[3]/label/input").send_keys(CHAIN_ID)
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[4]/div/input").send_keys(CURRENCY_SYMBOL)
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[2]/div[5]/label/input").send_keys(BLOCK_EXPLORER_URL)
+driver.find_element(By.XPATH, "/html/body/div[1]/div/div[3]/div/div[2]/div[2]/div/div[2]/div/div[3]/button[2]").click()
+time.sleep(2)
+driver.find_element(By.XPATH, "/html/body/div[2]/div/div/section/div[2]/div/button[1]").click()
+time.sleep(3)
+
+
+
+time.sleep(8)
+
+driver.get("https://console.brahma.fi/")
+time.sleep(10)
+# Click on collect wallet
+WebDriverWait(driver, 20).until(
     EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/button"))
 ).click()
 
-#Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on the Metamask wallet
-WebDriverWait(driver, 90).until(
-    EC.element_to_be_clickable(
-        (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div[3]/button/div/div"))
-).click()
-
-# Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on get metamask wallet
-WebDriverWait(driver, 90).until(
-    EC.element_to_be_clickable(
-        (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div[2]/button/div"))
-).click()
-
-#Waits for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on Add to chrome
-WebDriverWait(driver, 90).until(
-    EC.element_to_be_clickable(
-        (By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div/div[1]/div[3]/div[2]/div[3]/a/div"))
-).click()
-
-# wait for 15 seconds before continuing script.
-time.sleep(15)
-# Pop up telling the user to click on the accept the add extension option in the alert window
-def show_add_extension_prompt():
-    def on_ok():
-        root.destroy()
-
-    def on_cancel():
-        root.destroy()
-        driver.quit()
-        exit()
-
-    root = tk.Tk()
-    root.title("Add Extension Confirmation")
-
-    instructions = (
-        "Please be prepared to cofirm that you want to add the extension:\n\n"
-        
-        "When the alert window pops up, confirm the action.\n\n"
-        "Click OK to continue."
-    )
-
-    label = tk.Label(root, text=instructions, justify=tk.LEFT)
-    label.pack(padx=20, pady=20)
-
-    ok_button = tk.Button(root, text="OK", command=on_ok)
-    ok_button.pack(side=tk.LEFT, padx=20, pady=20)
-
-    cancel_button = tk.Button(root, text="Cancel", command=on_cancel)
-    cancel_button.pack(side=tk.RIGHT, padx=20, pady=20)
-
-    root.mainloop()
-
-# Trigger the add extension prompt
-show_add_extension_prompt()
-
-
-
-# Click on Add to chrome in the Chrome extention shop website
-handles = driver.window_handles
-driver.switch_to.window(handles[1])
-WebDriverWait(driver, 90).until(
-    EC.element_to_be_clickable(
-        (By.XPATH, '//*[@id="yDmH0d"]/c-wiz/div/div/main/div/section[1]/section/div[2]/div/button'))
-).click()
-# Step 2: Pause for manual MetaMask configuration using Tkinter
-def show_message():
-    def on_ok():
-        root.destroy()
-
-    def on_cancel():
-        root.destroy()
-        driver.quit()
-        exit()
-
-    root = tk.Tk()
-    root.title("MetaMask Configuration")
-
-    instructions = (
-        "Please configure MetaMask manually: dont click ok or cancel until you have performed the following steps: simply minimize this popup\n\n"
-        "1.Click on the Add extension button that shows in the alert pop up; Once installed, click on the MetaMask extension and sign in or set up a new account.\n\n"
-        "2. After setting up an account, You will be redirected to your MetaMask extension dashboard.\n\n"
-        "3. In the MetaMask extension dashboard, at the top left of the screen click on 'Ethereum Mainnet', > click on 'Add Network', > Scroll down and click on Add network Manually.  .\n\n"
-        "4. Enter the following details:\n"
-        "   - Network Name: Arbitrum One\n"
-        "   - New RPC URL: https://arbitrum.llamarpc.com\n"
-        "   - Chain ID: 42161\n"
-        "   - Currency Symbol: ETH\n"
-        "   - Block Explorer URL: https://arbiscan.io\n\n"
-        "5. After configuring the network, click on your account, > click on 'Add Account or Hardware Wallet' import the provided account using the private key: 0x56ec2116b33eefed4e499d02f8f6f2bdb76b67d53406923e9aa9378dd1aa2fdc.\n\n"
-        "6. Finally, switch back to the Brahma Console tab and click OK to continue."
-    )
-
-    text_widget = tk.Text(root, wrap=tk.WORD)
-    text_widget.insert(tk.END, instructions)
-    text_widget.config(state=tk.DISABLED)
-    text_widget.pack(padx=20, pady=20)
-    
-    ok_button = tk.Button(root, text="OK", command=on_ok)
-    ok_button.pack(side=tk.LEFT, padx=20, pady=20)
-
-    cancel_button = tk.Button(root, text="Cancel", command=on_cancel)
-    cancel_button.pack(side=tk.RIGHT, padx=20, pady=20)
-
-    root.mainloop()
-
-
-#Trigger the show_message function
-show_message()
-
-# Delay for 3 seconds
-time.sleep(5)
-
-
-# Return to the main/first window
-driver.switch_to.window(handles[0])
-
-#Wait for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Refreshe the site
-WebDriverWait(driver, 90).until(
-    EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[3]/div[2]/div/div/div[2]/button"))
-).click()
-
-#Wait for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on collect wallet
-WebDriverWait(driver, 90).until(
-    EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/div[2]/div/div/button"))
-).click()
-
-#Wait for a maximum of 90 seconds to verify that the element exists on the DOM, and if it does; Click on Your recent wallet
-WebDriverWait(driver, 90).until(
+# Click on Your recent wallet
+WebDriverWait(driver, 20).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div/button/div/div"))
 ).click()
-
-WebDriverWait(driver, 90).until(
-    EC.element_to_be_clickable((By.XPATH, "/html/body/div[2]/div/div/div[2]/div/div/div/div/div[1]/div[2]/div[2]/div/button/div/div"))
+time.sleep(7)
+driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html")
+time.sleep(8)
+WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div/div/div[3]/div[2]/footer/button[2]"))
 ).click()
 
-
-# Pause for manual configuration: Click the confirm button on the new window or popup
-def confirm_action():
-    def on_ok():
-        root.destroy()
-
-    def on_cancel():
-        root.destroy()
-        driver.quit()
-        exit()
-
-    root = tk.Tk()
-    root.title("MetaMask Configuration")
-
-    instructions = (
-    """Please configure MetaMask manually:
-
-    1. Please select account 2 and click on Next.
-
-    2. Please click on Confirm.
-
-    3. You will be redirected to a different page, once you are there, and you can see the title "Secured with signature", please click on 'Ok' to continue.
-    """
-)
-
-    label = tk.Label(root, text=instructions, justify=tk.LEFT)
-    label.pack(padx=20, pady=20)
-
-    ok_button = tk.Button(root, text="OK", command=on_ok)
-    ok_button.pack(side=tk.LEFT, padx=20, pady=20)
-
-    cancel_button = tk.Button(root, text="Cancel", command=on_cancel)
-    cancel_button.pack(side=tk.RIGHT, padx=20, pady=20)
-
-    root.mainloop()
+time.sleep(8)
+WebDriverWait(driver, 20).until(
+    EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div/div/div[3]/div[2]/footer/button[2]"))
+).click()
+time.sleep(8)
+driver.get("https://console.brahma.fi/")
 
 
-#Triggers the confirm_action function
-confirm_action()
-
-
-
-
-
-# Step 3: Sign Message
-try:
-    time.sleep(10)
-    sign_message_button = driver.find_element(By.XPATH, "/html/body/div/div/div[1]/div[2]/div/button")
-    WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable(sign_message_button)
-    ).click()
-
-    time.sleep(10)
-
-# Pause for manual configuration: Confirm Signature
-    def confirm_sign():
-        def on_ok():
-            root.destroy()
-
-        def on_cancel():
-            root.destroy()
-            driver.quit()
-            exit()
-
-        root = tk.Tk()
-        root.title("MetaMask Configuration")
-
-        instructions = (
-    """Please configure Your Signature manually:
-
-    1. Confirm Your signature.
-
-    2. You will be redirected to a page. Once you are there, and you can see two consoles "Manual and UI testing", please click on OK to continue.
-    """
-)
-
-
-        label = tk.Label(root, text=instructions, justify=tk.LEFT)
-        label.pack(padx=20, pady=20)
-
-        ok_button = tk.Button(root, text="OK", command=on_ok)
-        ok_button.pack(side=tk.LEFT, padx=20, pady=20)
-
-        cancel_button = tk.Button(root, text="Cancel", command=on_cancel)
-        cancel_button.pack(side=tk.RIGHT, padx=20, pady=20)
-
-        root.mainloop()
-
-
-    # Triggers the confirm_sign function
-    confirm_sign()
-
-
-except Exception as e:
-    print(f"Error during sign message step: {e}")
-    driver.quit()
-    exit()
-
-# Select UI-testing console
 try:
     time.sleep(10)
     ui_testing_console_button = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]")
@@ -275,7 +166,7 @@ except Exception as e:
     driver.quit()
     exit()
 
-# Take Screenshot
+# Step 5: Take Screenshot
 try:
     time.sleep(20)
     driver.save_screenshot("dashboard.png")
@@ -292,8 +183,13 @@ except Exception as e:
     print(f"Assertion failed: {e}")
 
 
-
-
-
 # Close WebDriver
 driver.quit()
+
+
+
+
+
+
+
+
