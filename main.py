@@ -47,21 +47,19 @@ driver.get(f"chrome-extension://{EXTENSION_ID}/home.html")
 
 
 
-time.sleep(10)
+time.sleep(15)
+
 password_field = WebDriverWait(driver, 30).until(
     EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div/div/div/form/div/div/input'))
 )
 password_field.send_keys(password)
 time.sleep(5)
 driver.find_element(By.XPATH, "/html/body/div[1]/div/div[2]/div/div/button").click()
-time.sleep(5)
-
-
-
+time.sleep(8)
 
 
 # Perform actions in the third tab
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 40).until(
 EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/button"))
 ).click()
@@ -87,8 +85,8 @@ WebDriverWait(driver, 30).until(
 EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[3]/div[3]/div/section/div[2]/div/div[2]/button[2]"))
 ).click()
-
-WebDriverWait(driver, 30).until(
+time.sleep(5)
+WebDriverWait(driver, 40).until(
 EC.element_to_be_clickable(
         (By.XPATH, "/html/body/div[1]/div/div[2]/div/div[1]/button"))
 ).click()
@@ -144,7 +142,7 @@ WebDriverWait(driver, 20).until(
 time.sleep(7)
 driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html")
 time.sleep(10)
-WebDriverWait(driver, 30).until(
+WebDriverWait(driver, 50).until(
     EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div/div/div[3]/div[2]/footer/button[2]"))
 ).click()
 
@@ -158,26 +156,38 @@ driver.get("https://console.brahma.fi/")
 
 
 try:
-    time.sleep(10)
-    #
-    # WebDriverWait(driver, 20).until(
-    #     EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div[1]/div[2]/div/button"))
-    # ).click()
-    #
-    # driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html")
-    #
-    # WebDriverWait(driver, 20).until(
-    #     EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div[3]/div/div[5]/footer/button[2]"))
-    # ).click()
-    #
-    # time.sleep(10)
-    # driver.get("https://console.brahma.fi/")
-    # time.sleep(500)
+    try:
+        WebDriverWait(driver, 20).until(
+                EC.element_to_be_clickable((By.XPATH, "/html/body/div/div/div[1]/div[2]/div/button"))
+        ).click()
 
-    ui_testing_console_button = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]")
-    WebDriverWait(driver, 30).until(
-        EC.element_to_be_clickable(ui_testing_console_button)
-    ).click()
+        time.sleep(5)
+        driver.get("chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html")
+
+        time.sleep(20)
+
+
+        WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, "/html/body/div[1]/div/div[3]/div/div[5]/footer/button[2]"))
+        ).click()
+
+        time.sleep(50)
+        driver.get("https://console.brahma.fi/")
+        time.sleep(10)
+
+
+        ui_testing_console_button = driver.find_element(By.XPATH,
+                                                        "/html/body/div[1]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]")
+        WebDriverWait(driver, 30).until(
+            EC.element_to_be_clickable(ui_testing_console_button)
+        ).click()
+
+    except:
+
+        ui_testing_console_button = driver.find_element(By.XPATH, "/html/body/div[1]/div/div[1]/div[2]/div/div[1]/div[2]/div/div[2]")
+        WebDriverWait(driver, 30).until(
+            EC.element_to_be_clickable(ui_testing_console_button)
+        ).click()
 
 
 
